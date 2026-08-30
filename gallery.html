@@ -3,76 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bo Bragason Fan Site - Galeria</title>
+    <title>Memórias Alanis Guillen — Galeria</title>
+    <!-- Fontes Solicitadas -->
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { display: flex; background: #121212; color: #fff; min-height: 100vh; }
-        .sidebar { width: 250px; background: #1e1e1e; padding: 20px; position: fixed; height: 100vh; border-right: 1px solid #333; }
-        .sidebar h2 { color: #ff4757; margin-bottom: 30px; text-align: center; font-size: 24px; }
-        .sidebar a { display: block; color: #bbb; padding: 12px; text-decoration: none; border-radius: 5px; margin-bottom: 10px; transition: 0.3s; }
-        .sidebar a:hover, .sidebar a.active { background: #ff4757; color: #fff; }
-        .content { margin-left: 250px; padding: 40px; width: calc(100% - 250px); }
-        .section-title { font-size: 28px; margin-bottom: 20px; color: #ff4757; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Gallery Grid */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-        .gallery-item { position: relative; overflow: hidden; border-radius: 6px; border: 1px solid #333; cursor: pointer; aspect-ratio: 1/1; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-        .gallery-item:hover img { transform: scale(1.05); }
+        body { 
+            font-family: 'Cinzel', serif; 
+            background-color: #0A3323; /* Dark green */
+            color: #F7F4D5; /* Beige */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container Principal Centralizado */
+        .site-container {
+            width: 100%;
+            max-width: 1050px;
+            padding: 0 20px;
+            margin-bottom: 50px;
+        }
+
+        /* Menu de Navegação Superior */
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 25px 0;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        .top-nav a {
+            color: #F7F4D5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .top-nav a:hover, .top-nav a.active {
+            color: #D3968C; /* Rosy brown */
+        }
+
+        .nav-divider {
+            color: #839958; /* Moss green */
+            font-size: 10px;
+        }
+
+        /* Banner Header */
+        .banner-container {
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            margin-bottom: 30px;
+            border: 1px solid rgba(131, 153, 88, 0.3);
+        }
+
+        .banner-container img {
+            width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        /* Estrutura de 3 Colunas mantendo o padrão */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr 240px;
+            gap: 25px;
+            align-items: start;
+        }
+
+        /* Blocos brancos estilo Tumblr/Ethereal */
+        .content-box {
+            background-color: #FFFFFF;
+            color: #333333;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
+        }
+
+        /* --- COLUNA ESQUERDA: PERFIL SOBRE --- */
+        .sidebar-left .profile-img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-left h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            color: #0A3323;
+        }
+
+        .sidebar-left p {
+            font-size: 12px;
+            line-height: 1.6;
+            text-align: center;
+            color: #555555;
+        }
+
+        /* --- COLUNA CENTRAL: A GALERIA DE FOTOS (ETHEREAL) --- */
+        .gallery-header-title {
+            font-family: 'DM Serif Display', serif;
+            color: #D3968C;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(247, 244, 213, 0.2);
+            padding-bottom: 5px;
+        }
+
+        /* Fileira de Cards Horizontais (Projetos Recentes / Revistas) */
+        .gallery-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .section-card {
+            background: #fff;
+            padding: 5px;
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            border: 1px solid #eee;
+        }
+
+        .section-card:hover {
+            transform: scale(1.03);
+        }
+
+        .section-card img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            background-color: #f5f5f5;
+            border-radius: 2px;
+        }
+
+        .section-title-box {
+            background-color: #839958; /* Moss green */
+            color: #F7F4D5;
+            font-family: 'Cinzel', serif;
+            font-size: 9px;
+            font-weight: bold;
+            padding: 5px 2px;
+            margin-top: 5px;
+            text-transform: uppercase;
+            border-radius: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Lista de Categorias */
+        .category-container h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 20px;
+            color: #0A3323;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #839958;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .cat-item {
+            margin-bottom: 20px;
+        }
+
+        .cat-btn {
+            display: inline-block;
+            background-color: #839958; /* Moss green */
+            color: #F7F4D5;
+            padding: 6px 12px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 3px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .cat-btn:hover {
+            background-color: #D3968C;
+        }
+
+        .cat-item p {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #565656;
+            padding-left: 2px;
+        }
+
+        /* --- COLUNA DIREITA: NAVEGAÇÃO INTERNA --- */
+        .sidebar-right h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #0A3323;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .nav-list { list-style: none; }
+        .nav-list li { border-bottom: 1px solid #f0f0f0; padding: 10px 0; display: flex; align-items: center; }
+        .nav-list li:last-child { border-bottom: none; }
+        .nav-list .num { font-family: 'Cinzel', serif; font-size: 11px; font-weight: bold; color: #839958; margin-right: 15px; width: 20px; }
+        .nav-list a { font-family: 'Cinzel', serif; font-size: 12px; text-decoration: none; color: #666666; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-list a:hover { color: #D3968C; }
 
         /* Lightbox Overlay */
-        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; }
-        .lightbox-content { max-width: 85%; max-height: 85%; border-radius: 4px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
-        .lightbox-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .lightbox-close:hover { color: #ff4757; }
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
 
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; }
-            .content { margin-left: 0; width: 100%; padding: 20px; }
+        .lightbox img {
+            max-width: 85%;
+            max-height: 85%;
+            border-radius: 4px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 900px) {
+            .layout-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <nav class="sidebar">
-        <h2>Bo Bragason</h2>
-        <a href="index.html">Início</a>
-        <a href="about.html">Sobre</a>
-        <a href="filmography.html">Filmografia</a>
-        <a href="gallery.html" class="active">Galeria</a>
-        <a href="archive.html">Arquivo</a>
-    </nav>
-    <main class="content">
-        <h2 class="section-title">Galeria de Fotos</h2>
-        <div class="gallery-grid">
-            <!-- Insira os links diretos do ImgBB (i.ibb.co) abaixo -->
-            <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/800x600?text=Foto+1')">
-                <img src="https://via.placeholder.com/300x300?text=Foto+1" alt="Bo Bragason 1">
-            </div>
-            <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/800x600?text=Foto+2')">
-                <img src="https://via.placeholder.com/300x300?text=Foto+2" alt="Bo Bragason 2">
-            </div>
-            <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/800x600?text=Foto+3')">
-                <img src="https://via.placeholder.com/300x300?text=Foto+3" alt="Bo Bragason 3">
-            </div>
+
+    <div class="site-container">
+        
+        <!-- Menu Superior -->
+        <nav class="top-nav">
+            <a href="index.html">Início</a>
+            <span class="nav-divider">•</span>
+            <a href="about.html">Sobre</a>
+            <span class="nav-divider">•</span>
+            <a href="filmography.html">Vídeos</a>
+            <span class="nav-divider">•</span>
+            <a href="gallery.html" class="active">Galeria</a>
+            <span class="nav-divider">•</span>
+            <a href="archive.html">Arquivo</a>
+        </nav>
+
+        <!-- Banner Header -->
+        <div class="banner-container">
+            <img src="https://placeholder.com" alt="Memórias Guillen Banner">
         </div>
-    </main>
 
-    <!-- Lightbox Element -->
-    <div id="lightboxOverlay" class="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightboxImg" class="lightbox-content" src="" alt="Ampliada" onclick="event.stopPropagation()">
-    </div>
+        <div class="layout-grid">
+            
+            <!-- COLUNA ESQUERDA: BLOCO SOBRE -->
+            <aside class="sidebar-left content-box">
+                <img src="https://placeholder.com" class="profile-img" alt="Alanis Perfil">
+                <h3>Sobre</h3>
+                <p>Sua fonte de registros e memórias sobre o universo da talentosa atriz Alanis Guillen. ✦</p>
+            </aside>
 
-    <script>
-        function openLightbox(src) {
-            document.getElementById('lightboxImg').src = src;
-            document.getElementById('lightboxOverlay').style.display = 'flex';
-        }
-        function closeLightbox() {
-            document.getElementById('lightboxOverlay').style.display = 'none';
-            document.getElementById('lightboxImg').src = '';
-        }
-    </script>
-</body>
-</html>
+            <!-- COLUNA CENTRAL: LAYOUT DO SEU TUMBLR (GALERIAMG) -->
+            <main class="main-gallery-area">
+                
+                <div class="gallery-header-title"># Projetos Recentes</div>
+                <div class="gallery-row">
+                    <div class="section-card" onclick="openLightbox('https://placeholder.com')">
+                        <img src="https://placeholder.com" alt="S1">
+                        <div class="section-title-box">Sec. 1 Title</div>
+                    </div>
+                    <div class="section-card" onclick="openLightbox('https://placeholder.com')">
+                        <img src="https://placeholder.com" alt="S2">
+                        <div class="section-title-box">Sec. 2 Title</div>
+                    </div>
+                    <div class="section-card" onclick="openLightbox('https://placeholder.com')">
+                        <img src="https://placeholder.com" alt="S3">
+                        <div class="section-title-box">Sec. 3 Title</div>
