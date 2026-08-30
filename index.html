@@ -4,200 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memórias Alanis Guillen — Início</title>
-    <!-- Fontes Solicitadas -->
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cinzel', serif; background-color: #0A3323; color: #F7F4D5; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
         
-        body { 
-            font-family: 'Cinzel', serif; 
-            background-color: #0A3323; /* Dark green */
-            color: #F7F4D5; /* Beige */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* Container Principal Centralizado */
-        .site-container {
-            width: 100%;
-            max-width: 1050px;
-            padding: 0 20px;
-            margin-bottom: 50px;
-        }
-
-        /* Menu de Navegação Superior */
-        .top-nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            padding: 25px 0;
-            text-transform: uppercase;
-            font-size: 13px;
-            letter-spacing: 2px;
-        }
-
-        .top-nav a {
-            color: #F7F4D5;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .top-nav a:hover, .top-nav a.active {
-            color: #D3968C; /* Rosy brown */
-        }
-
-        .nav-divider {
-            color: #839958; /* Moss green */
-            font-size: 10px;
-        }
+        .site-container { width: 100%; max-width: 1050px; padding: 0 20px; margin-bottom: 50px; }
+        
+        /* Menu Superior */
+        .top-nav { display: flex; justify-content: center; align-items: center; gap: 20px; padding: 25px 0; text-transform: uppercase; font-size: 13px; letter-spacing: 2px; }
+        .top-nav a { color: #F7F4D5; text-decoration: none; transition: color 0.3s; }
+        .top-nav a:hover, .top-nav a.active { color: #D3968C; }
+        .nav-divider { color: #839958; font-size: 10px; }
 
         /* Banner Header */
-        .banner-container {
-            width: 100%;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            margin-bottom: 30px;
-            border: 1px solid rgba(131, 153, 88, 0.3);
-        }
+        .banner-container { width: 100%; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.4); margin-bottom: 30px; border: 1px solid rgba(131, 153, 88, 0.3); }
+        .banner-container img { width: 100%; display: block; height: auto; }
 
-        .banner-container img {
-            width: 100%;
-            display: block;
-            height: auto;
-        }
+        /* Grade 3 Colunas */
+        .layout-grid { display: grid; grid-template-columns: 240px 1fr 240px; gap: 25px; align-items: start; }
+        .content-box { background-color: #FFFFFF; color: #333333; border-radius: 4px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); margin-bottom: 25px; }
 
-        /* Estrutura das 3 Colunas (Layout do Print) */
-        .layout-grid {
-            display: grid;
-            grid-template-columns: 240px 1fr 240px;
-            gap: 25px;
-            align-items: start;
-        }
+        /* Coluna Esquerda */
+        .sidebar-left .profile-img { width: 100%; height: auto; border-radius: 2px; display: block; margin-bottom: 15px; }
+        .sidebar-left h3 { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; text-align: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; color: #0A3323; }
+        .sidebar-left p { font-size: 12px; line-height: 1.6; text-align: center; color: #555555; margin-bottom: 15px; }
 
-        /* Estilo Base dos Blocos Brancos do Tumblr */
-        .content-box {
-            background-color: #FFFFFF;
-            color: #333333;
-            border-radius: 4px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
+        /* Coluna Central (Posts) */
+        .main-post .post-fixed-title { font-family: 'DM Serif Display', serif; color: #D3968C; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; text-align: center; }
+        .post-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: #0A3323; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+        .post-body { font-size: 13px; line-height: 1.7; color: #444444; }
+        .post-body p { margin-bottom: 10px; }
+        .post-footer { margin-top: 15px; padding-top: 10px; border-top: 1px solid #eee; font-size: 11px; color: #888888; display: flex; justify-content: space-between; }
 
-        /* --- COLUNA ESQUERDA: SOBRE --- */
-        .sidebar-left .profile-img {
-            width: 100%;
-            height: auto;
-            border-radius: 2px;
-            display: block;
-            margin-bottom: 15px;
-        }
+        /* Coluna Direita */
+        .sidebar-right h3 { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; text-align: center; margin-bottom: 20px; color: #0A3323; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .nav-list { list-style: none; }
+        .nav-list li { border-bottom: 1px solid #f0f0f0; padding: 10px 0; display: flex; align-items: center; }
+        .nav-list li:last-child { border-bottom: none; }
+        .nav-list .num { font-family: 'Cinzel', serif; font-size: 11px; font-weight: bold; color: #839958; margin-right: 15px; width: 20px; }
+        .nav-list a { font-family: 'Cinzel', serif; font-size: 12px; text-decoration: none; color: #666666; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
+        .nav-list a:hover { color: #D3968C; }
 
-        .sidebar-left h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            color: #0A3323;
-        }
+        /* Bloco de Projetos */
+        .project-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0; }
+        .project-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .project-name { font-family: 'DM Serif Display', serif; font-size: 15px; color: #0A3323; text-transform: uppercase; }
+        .project-meta { font-size: 11px; color: #777777; margin: 3px 0 8px 0; }
+        .project-btn { display: inline-block; background-color: #839958; color: #FFFFFF; font-size: 11px; padding: 4px 10px; text-decoration: none; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; }
+        .project-btn:hover { background-color: #105666; }
 
-        .sidebar-left p {
-            font-size: 12px;
-            line-height: 1.6;
-            text-align: center;
-            color: #555555;
-        }
-
-        /* --- COLUNA CENTRAL: POSTS --- */
-        .main-post .post-fixed-title {
-            font-family: 'DM Serif Display', serif;
-            color: #D3968C; /* Rosy brown aplicado no texto externo */
-            font-size: 14px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .main-post .post-image {
-            width: 100%;
-            height: auto;
-            border-radius: 2px;
-            display: block;
-        }
-
-        /* --- COLUNA DIREITA: NAVEGAÇÃO INTERNA --- */
-        .sidebar-right h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #0A3323;
-        }
-
-        .nav-list {
-            list-style: none;
-        }
-
-        .nav-list li {
-            border-bottom: 1px solid #f0f0f0;
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-list li:last-child {
-            border-bottom: none;
-        }
-
-        .nav-list .num {
-            font-family: 'Cinzel', serif;
-            font-size: 11px;
-            font-weight: bold;
-            color: #839958; /* Moss green para os números */
-            margin-right: 15px;
-            width: 20px;
-        }
-
-        .nav-list a {
-            font-family: 'Cinzel', serif;
-            font-size: 12px;
-            text-decoration: none;
-            color: #666666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-        }
-
-        .nav-list a:hover {
-            color: #D3968C;
-        }
-
-        /* Responsividade para Celulares e Tablets */
-        @media (max-width: 900px) {
-            .layout-grid {
-                grid-template-columns: 1fr;
-            }
-            .sidebar-left, .sidebar-right {
-                grid-row: initial;
-            }
-        }
+        @media (max-width: 900px) { .layout-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-
     <div class="site-container">
-        
-        <!-- 1. Menu Superior de Páginas -->
+        <!-- Menu Superior -->
         <nav class="top-nav">
             <a href="index.html" class="active">Início</a>
             <span class="nav-divider">•</span>
@@ -210,50 +72,74 @@
             <a href="archive.html">Arquivo</a>
         </nav>
 
-        <!-- 2. Banner Header Principal -->
+        <!-- Banner Header -->
         <div class="banner-container">
-            <!-- Insira aqui o link direto da imagem recortada do topo do seu tumblr -->
-            <img src="https://img3.pixhost.to/images/5329/764003412_header-mg.png" alt="Memórias Guillen Banner">
+            <img src="https://ibb.co" alt="Memórias Guillen Banner">
         </div>
 
-        <!-- 3. Grade de Três Colunas -->
         <div class="layout-grid">
-            
-            <!-- COLUNA ESQUERDA: BLOCO SOBRE -->
-            <aside class="sidebar-left content-box">
-                <!-- Substitua pela sua foto quadrada de perfil -->
-                <img src="https://img3.pixhost.to/images/5329/764003438_icon-mg.png" class="profile-img" alt="Alanis Perfil">
-                <h3>Sobre</h3>
-                <p>Sua fonte de registros e memórias sobre o universo da talentosa atriz Alanis Guillen. ✦</p>
+            <!-- COLUNA ESQUERDA: SOBRE -->
+            <aside class="sidebar-left">
+                <div class="content-box">
+                    <img src="https://ibb.co" class="profile-img" alt="Alanis Perfil">
+                    <h3>sobre</h3>
+                    <p>Sua fonte de registros e memórias sobre o universo da talentosa atriz Alanis Guillen. ✨🎬</p>
+                </div>
             </aside>
 
-            <!-- COLUNA CENTRAL: POST FIXO -->
+            <!-- COLUNA CENTRAL: POSTS REAIS DO TUMBLR -->
             <main class="main-post">
-                <div class="post-fixed-title">✦ Post Fixo</div>
+                <div class="post-fixed-title">✦ Pinned Post</div>
+                
                 <div class="content-box">
-                    <!-- Substitua pela imagem linda de destaque que você quer no centro -->
-                    <img src="https://pixhost.to/show/5329/764003471_post-1.png" class="post-image" alt="Alanis Guillen Destaque">
+                    <div class="post-title">Sejam bem-vindos!</div>
+                    <div class="post-body">
+                        <p>Este espaço nasce do afeto, da admiração e do desejo de celebrar a trajetória artística da Alanis Guillen.</p>
+                        <p>Nosso objetivo é construir um verdadeiro acervo digital vivo: resgatando a nostalgia de diversos momentos de sua carreira, relembrando projetos, e acompanhando de perto todas as novidades sobre a Alanis. 🤍</p>
+                    </div>
+                    <div class="post-footer">
+                        <span>19 de Maio, 2026</span>
+                        <span>#memóriasguillen</span>
+                    </div>
                 </div>
             </main>
 
-            <!-- COLUNA DIREITA: CATEGORIAS INTERNAS -->
-            <aside class="sidebar-right content-box">
-                <h3>Navegação</h3>
-                <ul class="nav-list">
-                    <li><span class="num">01</span><a href="gallery.html">Fotos</a></li>
-                    <li><span class="num">02</span><a href="filmography.html">Vídeos</a></li>
-                    <li><span class="num">03</span><a href="#">Propagandas</a></li>
-                    <li><span class="num">04</span><a href="#">Revistas</a></li>
-                    <li><span class="num">05</span><a href="#">Entrevistas</a></li>
-                    <li><span class="num">06</span><a href="#">Novelas</a></li>
-                    <li><span class="num">07</span><a href="#">Séries</a></li>
-                    <li><span class="num">08</span><a href="#">Filmes</a></li>
-                </ul>
+            <!-- COLUNA DIREITA: NAVEGAÇÃO E PROJETOS -->
+            <aside class="sidebar-right">
+                <div class="content-box">
+                    <h3>navegação</h3>
+                    <ul class="nav-list">
+                        <li><span class="num">01</span><a href="gallery.html">Fotos</a></li>
+                        <li><span class="num">02</span><a href="filmography.html">Vídeos</a></li>
+                        <li><span class="num">03</span><a href="#">Propagandas</a></li>
+                        <li><span class="num">04</span><a href="#">Revistas</a></li>
+                        <li><span class="num">05</span><a href="#">Entrevistas</a></li>
+                        <li><span class="num">06</span><a href="#">Novelas</a></li>
+                        <li><span class="num">07</span><a href="#">Séries</a></li>
+                        <li><span class="num">08</span><a href="#">Filmes</a></li>
+                    </ul>
+                </div>
+
+                <div class="content-box">
+                    <h3>projetos</h3>
+                    <div class="project-item">
+                        <div class="project-name">Loquinha</div>
+                        <div class="project-meta">Data: 06/04/2026<br>Personagem: Lorena Ferette</div>
+                        <a href="filmography.html" class="project-btn">Assista</a>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-name">Três Graças</div>
+                        <div class="project-meta">Data: 20/10/2025<br>Personagem: Lorena Ferette</div>
+                        <a href="filmography.html" class="project-btn">Assista</a>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-name">Vermelho Sangue</div>
+                        <div class="project-meta">Data: 02/10/2025<br>Personagem: Flora Leite</div>
+                        <a href="filmography.html" class="project-btn">Assista</a>
+                    </div>
+                </div>
             </aside>
-
         </div>
-
     </div>
-
 </body>
 </html>
