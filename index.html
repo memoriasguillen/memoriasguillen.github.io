@@ -3,57 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bo Bragason Fan Site - Home</title>
+    <title>Memórias Alanis Guillen — Início</title>
+    <!-- Fontes Solicitadas -->
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { display: flex; background: #121212; color: #fff; min-height: 100vh; }
-        .sidebar { width: 250px; background: #1e1e1e; padding: 20px; position: fixed; height: 100vh; border-right: 1px solid #333; }
-        .sidebar h2 { color: #ff4757; margin-bottom: 30px; text-align: center; font-size: 24px; }
-        .sidebar a { display: block; color: #bbb; padding: 12px; text-decoration: none; border-radius: 5px; margin-bottom: 10px; transition: 0.3s; }
-        .sidebar a:hover, .sidebar a.active { background: #ff4757; color: #fff; }
-        .content { margin-left: 250px; padding: 40px; width: calc(100% - 250px); }
-        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://via.placeholder.com/1200x400') no-repeat center/cover; padding: 80px 40px; border-radius: 10px; text-align: center; margin-bottom: 40px; border: 1px solid #333; }
-        .hero h1 { font-size: 42px; color: #ff4757; margin-bottom: 15px; }
-        .section-title { font-size: 28px; margin-bottom: 20px; color: #ff4757; border-bottom: 2px solid #333; padding-bottom: 10px; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 20px; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: #ff4757; }
-        .card h3 { margin-bottom: 10px; color: #fff; }
-        .card p { color: #aaa; font-size: 14px; line-height: 1.6; }
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; }
-            .content { margin-left: 0; width: 100%; padding: 20px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Cinzel', serif; 
+            background-color: #0A3323; /* Dark green */
+            color: #F7F4D5; /* Beige */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container Principal Centralizado */
+        .site-container {
+            width: 100%;
+            max-width: 1050px;
+            padding: 0 20px;
+            margin-bottom: 50px;
+        }
+
+        /* Menu de Navegação Superior */
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 25px 0;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        .top-nav a {
+            color: #F7F4D5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .top-nav a:hover, .top-nav a.active {
+            color: #D3968C; /* Rosy brown */
+        }
+
+        .nav-divider {
+            color: #839958; /* Moss green */
+            font-size: 10px;
+        }
+
+        /* Banner Header */
+        .banner-container {
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            margin-bottom: 30px;
+            border: 1px solid rgba(131, 153, 88, 0.3);
+        }
+
+        .banner-container img {
+            width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        /* Estrutura das 3 Colunas (Layout do Print) */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr 240px;
+            gap: 25px;
+            align-items: start;
+        }
+
+        /* Estilo Base dos Blocos Brancos do Tumblr */
+        .content-box {
+            background-color: #FFFFFF;
+            color: #333333;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        /* --- COLUNA ESQUERDA: SOBRE --- */
+        .sidebar-left .profile-img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-left h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            color: #0A3323;
+        }
+
+        .sidebar-left p {
+            font-size: 12px;
+            line-height: 1.6;
+            text-align: center;
+            color: #555555;
+        }
+
+        /* --- COLUNA CENTRAL: POSTS --- */
+        .main-post .post-fixed-title {
+            font-family: 'DM Serif Display', serif;
+            color: #D3968C; /* Rosy brown aplicado no texto externo */
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .main-post .post-image {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            display: block;
+        }
+
+        /* --- COLUNA DIREITA: NAVEGAÇÃO INTERNA --- */
+        .sidebar-right h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #0A3323;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-list li {
+            border-bottom: 1px solid #f0f0f0;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-list li:last-child {
+            border-bottom: none;
+        }
+
+        .nav-list .num {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: bold;
+            color: #839958; /* Moss green para os números */
+            margin-right: 15px;
+            width: 20px;
+        }
+
+        .nav-list a {
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            text-decoration: none;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-list a:hover {
+            color: #D3968C;
+        }
+
+        /* Responsividade para Celulares e Tablets */
+        @media (max-width: 900px) {
+            .layout-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar-left, .sidebar-right {
+                grid-row: initial;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="sidebar">
-        <h2>Bo Bragason</h2>
-        <a href="index.html" class="active">Início</a>
-        <a href="about.html">Sobre</a>
-        <a href="filmography.html">Filmografia</a>
-        <a href="gallery.html">Galeria</a>
-        <a href="archive.html">Arquivo</a>
-    </nav>
-    <main class="content">
-        <header class="hero">
-            <h1>Bem-vindo ao Bo Bragason Fan Site</h1>
-            <p>O seu acervo completo e centralizado sobre a talentosa atriz britânica.</p>
-        </header>
-        <section>
-            <h2 class="section-title">Últimas Atualizações</h2>
-            <div class="news-grid">
-                <div class="card">
-                    <h3>Novo Projeto Anunciado</h3>
-                    <p>Fique por dentro dos próximos passos na carreira de Bo Bragason e detalhes sobre suas novas produções cinematográficas.</p>
+
+    <div class="site-container">
+        
+        <!-- 1. Menu Superior de Páginas -->
+        <nav class="top-nav">
+            <a href="index.html" class="active">Início</a>
+            <span class="nav-divider">•</span>
+            <a href="about.html">Sobre</a>
+            <span class="nav-divider">•</span>
+            <a href="filmography.html">Vídeos</a>
+            <span class="nav-divider">•</span>
+            <a href="gallery.html">Galeria</a>
+            <span class="nav-divider">•</span>
+            <a href="archive.html">Arquivo</a>
+        </nav>
+
+        <!-- 2. Banner Header Principal -->
+        <div class="banner-container">
+            <!-- Insira aqui o link direto da imagem recortada do topo do seu tumblr -->
+            <img src="https://placeholder.com" alt="Memórias Guillen Banner">
+        </div>
+
+        <!-- 3. Grade de Três Colunas -->
+        <div class="layout-grid">
+            
+            <!-- COLUNA ESQUERDA: BLOCO SOBRE -->
+            <aside class="sidebar-left content-box">
+                <!-- Substitua pela sua foto quadrada de perfil -->
+                <img src="https://placeholder.com" class="profile-img" alt="Alanis Perfil">
+                <h3>Sobre</h3>
+                <p>Sua fonte de registros e memórias sobre o universo da talentosa atriz Alanis Guillen. ✦</p>
+            </aside>
+
+            <!-- COLUNA CENTRAL: POST FIXO -->
+            <main class="main-post">
+                <div class="post-fixed-title">✦ Post Fixo</div>
+                <div class="content-box">
+                    <!-- Substitua pela imagem linda de destaque que você quer no centro -->
+                    <img src="https://placeholder.com" class="post-image" alt="Alanis Guillen Destaque">
                 </div>
-                <div class="card">
-                    <h3>Galeria Atualizada</h3>
-                    <p>Adicionamos novas fotos em alta definição em nossa aba de galeria. Confira os últimos ensaios fotográficos e capturas de tela.</p>
-                </div>
-            </div>
-        </section>
-    </main>
+            </main>
+
+            <!-- COLUNA DIREITA: CATEGORIAS INTERNAS -->
+            <aside class="sidebar-right content-box">
+                <h3>Navegação</h3>
+                <ul class="nav-list">
+                    <li><span class="num">01</span><a href="gallery.html">Fotos</a></li>
+                    <li><span class="num">02</span><a href="filmography.html">Vídeos</a></li>
+                    <li><span class="num">03</span><a href="#">Propagandas</a></li>
+                    <li><span class="num">04</span><a href="#">Revistas</a></li>
+                    <li><span class="num">05</span><a href="#">Entrevistas</a></li>
+                    <li><span class="num">06</span><a href="#">Novelas</a></li>
+                    <li><span class="num">07</span><a href="#">Séries</a></li>
+                    <li><span class="num">08</span><a href="#">Filmes</a></li>
+                </ul>
+            </aside>
+
+        </div>
+
+    </div>
+
 </body>
 </html>
