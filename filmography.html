@@ -3,46 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bo Bragason Fan Site - Filmografia</title>
+    <title>Memórias Alanis Guillen — Vídeos</title>
+    <!-- Fontes Solicitadas -->
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { display: flex; background: #121212; color: #fff; min-height: 100vh; }
-        .sidebar { width: 250px; background: #1e1e1e; padding: 20px; position: fixed; height: 100vh; border-right: 1px solid #333; }
-        .sidebar h2 { color: #ff4757; margin-bottom: 30px; text-align: center; font-size: 24px; }
-        .sidebar a { display: block; color: #bbb; padding: 12px; text-decoration: none; border-radius: 5px; margin-bottom: 10px; transition: 0.3s; }
-        .sidebar a:hover, .sidebar a.active { background: #ff4757; color: #fff; }
-        .content { margin-left: 250px; padding: 40px; width: calc(100% - 250px); }
-        .section-title { font-size: 28px; margin-bottom: 20px; color: #ff4757; border-bottom: 2px solid #333; padding-bottom: 10px; }
-        .video-item { background: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 20px; margin-bottom: 30px; }
-        .video-item h3 { margin-bottom: 15px; color: #ff4757; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; background: #000; border: 1px solid #444; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; }
-            .content { margin-left: 0; width: 100%; padding: 20px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Cinzel', serif; 
+            background-color: #0A3323; /* Dark green */
+            color: #F7F4D5; /* Beige */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container Principal Centralizado */
+        .site-container {
+            width: 100%;
+            max-width: 1050px;
+            padding: 0 20px;
+            margin-bottom: 50px;
+        }
+
+        /* Menu de Navegação Superior */
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 25px 0;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        .top-nav a {
+            color: #F7F4D5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .top-nav a:hover, .top-nav a.active {
+            color: #D3968C; /* Rosy brown */
+        }
+
+        .nav-divider {
+            color: #839958; /* Moss green */
+            font-size: 10px;
+        }
+
+        /* Banner Header */
+        .banner-container {
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            margin-bottom: 30px;
+            border: 1px solid rgba(131, 153, 88, 0.3);
+        }
+
+        .banner-container img {
+            width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        /* Estrutura de 3 Colunas mantendo o padrão */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr 240px;
+            gap: 25px;
+            align-items: start;
+        }
+
+        /* Blocos de Conteúdo Estilo Tumblr */
+        .content-box {
+            background-color: #FFFFFF;
+            color: #333333;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
+        }
+
+        /* --- COLUNA ESQUERDA: PERFIL SOBRE --- */
+        .sidebar-left .profile-img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-left h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            color: #0A3323;
+        }
+
+        .sidebar-left p {
+            font-size: 12px;
+            line-height: 1.6;
+            text-align: center;
+            color: #555555;
+        }
+
+        /* --- COLUNA CENTRAL: FILMO/VÍDEOS (TESTEVIDEOS) --- */
+        .video-header-title {
+            font-family: 'DM Serif Display', serif;
+            color: #D3968C;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(247, 244, 213, 0.2);
+            padding-bottom: 5px;
+        }
+
+        /* Grade de Categorias em Blocos Escuros */
+        .video-categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .video-cat-card {
+            position: relative;
+            height: 75px;
+            background-color: #105666; /* Midnight green */
+            border-radius: 4px;
+            border: 1px solid rgba(131,153,88,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s;
+            text-decoration: none;
+        }
+
+        .video-cat-card::before {
+            content: '';
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            background: linear-gradient(0deg, rgba(10,51,35,0.85), rgba(10,51,35,0.6));
+            z-index: 1;
+        }
+
+        .video-cat-card:hover {
+            transform: translateY(-2px);
+            border-color: #D3968C;
+        }
+
+        .video-cat-card span {
+            position: relative;
+            z-index: 2;
+            font-family: 'Cinzel', serif;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #F7F4D5;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 0 5px;
+        }
+
+        /* Lista de Vídeos/Produções */
+        .production-section {
+            margin-bottom: 30px;
+        }
+
+        .production-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 22px;
+            color: #0A3323;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #839958;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .video-item {
+            margin-bottom: 25px;
+        }
+
+        .video-item h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            color: #666666;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .video-player-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 4px;
+            background-color: #000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .video-player-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        .video-description {
+            font-size: 12px;
+            line-height: 1.6;
+            color: #555555;
+            margin-top: 10px;
+            padding-left: 2px;
+        }
+
+        /* --- COLUNA DIREITA: NAVEGAÇÃO INTERNA --- */
+        .sidebar-right h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #0A3323;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .nav-list { list-style: none; }
+        .nav-list li { border-bottom: 1px solid #f0f0f0; padding: 10px 0; display: flex; align-items: center; }
+        .nav-list li:last-child { border-bottom: none; }
+        .nav-list .num { font-family: 'Cinzel', serif; font-size: 11px; font-weight: bold; color: #839958; margin-right: 15px; width: 20px; }
+        .nav-list a { font-family: 'Cinzel', serif; font-size: 12px; text-decoration: none; color: #666666; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-list a:hover { color: #D3968C; }
+
+        @media (max-width: 900px) {
+            .layout-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <nav class="sidebar">
-        <h2>Bo Bragason</h2>
-        <a href="index.html">Início</a>
-        <a href="about.html">Sobre</a>
-        <a href="filmography.html" class="active">Filmografia</a>
-        <a href="gallery.html">Galeria</a>
-        <a href="archive.html">Arquivo</a>
-    </nav>
-    <main class="content">
-        <h2 class="section-title">Filmografia e Episódios</h2>
+
+    <div class="site-container">
         
-        <div class="video-item">
-            <h3>Exemplo de Episódio / Filme (Hospedagem Externa Voe/Internxt)</h3>
-            <div class="video-wrapper">
-                <!-- Substitua o URL abaixo pelo link de incorporação (embed) do seu player externo (ex: Voe.sx) -->
-                <iframe src="https://voe.sx/e/example_id" allowfullscreen></iframe>
-            </div>
+        <!-- Menu Superior -->
+        <nav class="top-nav">
+            <a href="index.html">Início</a>
+            <span class="nav-divider">•</span>
+            <a href="about.html">Sobre</a>
+            <span class="nav-divider">•</span>
+            <a href="filmography.html" class="active">Vídeos</a>
+            <span class="nav-divider">•</span>
+            <a href="gallery.html">Galeria</a>
+            <span class="nav-divider">•</span>
+            <a href="archive.html">Arquivo</a>
+        </nav>
+
+        <!-- Banner Header -->
+        <div class="banner-container">
+            <img src="https://placeholder.com" alt="Memórias Guillen Banner">
         </div>
-    </main>
-</body>
-</html>
+
+        <div class="layout-grid">
+            
+            <!-- COLUNA ESQUERDA: BLOCO SOBRE -->
+            <aside class="sidebar-left content-box">
+                <img src="https://placeholder.com" class="profile-img" alt="Alanis Perfil">
+                <h3>Sobre</h3>
+                <p>Sua fonte de registros e memórias sobre o universo da talentosa atriz Alanis Guillen. ✦</p>
+            </aside>
+
+            <!-- COLUNA CENTRAL: SEU LAYOUT DE VÍDEOS (TESTEVIDEOS) -->
+            <main class="main-video-area">
+                
+                <div class="video-header-title"># Categorias de Mídia</div>
+                
+                <!-- Grade de Blocos Escuros Estilo Tumblr -->
+                <div class="video-categories-grid">
+                    <a href="#" class="video-cat-card"><span>Todos</span></a>
+                    <a href="#" class="video-cat-card"><span>Novelas</span></a>
+                    <a href="#" class="video-cat-card"><span>Séries</span></a>
+                    <a href="#" class="video-cat-card"><span>Filmes</span></a>
+                    <a href="#" class="video-cat-card"><span>Audiobooks</span></a>
+                    <a href="#" class="video-cat-card"><span>Comerciais</span></a>
+                    <a href="#" class="video-cat-card"><span>Glam</span></a>
+                    <a href="#" class="video-cat-card"><span>Clipes</span></a>
+                    <a href="#" class="video-cat-card"><span>Entrevistas</span></a>
