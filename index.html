@@ -3,143 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memórias Alanis Guillen — Início</title>
+    <title>Memórias Alanis Guillen — Filmlane Edition</title>
+    <!-- Fontes Importadas -->
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Cinzel', serif; background-color: #0A3323; color: #F7F4D5; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
         
-        .site-container { width: 100%; max-width: 1050px; padding: 0 20px; margin-bottom: 50px; }
-        
-        /* Menu Superior */
-        .top-nav { display: flex; justify-content: center; align-items: center; gap: 20px; padding: 25px 0; text-transform: uppercase; font-size: 13px; letter-spacing: 2px; }
-        .top-nav a { color: #F7F4D5; text-decoration: none; transition: color 0.3s; }
-        .top-nav a:hover, .top-nav a.active { color: #D3968C; }
-        .nav-divider { color: #839958; font-size: 10px; }
+        body { 
+            font-family: 'Cinzel', serif; 
+            background-color: #0A3323; /* Dark green */
+            color: #F7F4D5; /* Beige */
+            overflow-x: hidden;
+        }
 
-        /* Banner Header */
-        .banner-container { width: 100%; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.4); margin-bottom: 30px; border: 1px solid rgba(131, 153, 88, 0.3); }
-        .banner-container img { width: 100%; display: block; height: auto; }
+        /* --- HEADER & NAV (FILMLANE STYLE) --- */
+        header {
+            width: 100%;
+            background-color: rgba(10, 51, 35, 0.95);
+            position: fixed;
+            top: 0; left: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.3);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
 
-        /* Grade 3 Colunas */
-        .layout-grid { display: grid; grid-template-columns: 240px 1fr 240px; gap: 25px; align-items: start; }
-        .content-box { background-color: #FFFFFF; color: #333333; border-radius: 4px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); margin-bottom: 25px; }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
 
-        /* Coluna Esquerda */
-        .sidebar-left .profile-img { width: 100%; height: auto; border-radius: 2px; display: block; margin-bottom: 15px; }
-        .sidebar-left h3 { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; text-align: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; color: #0A3323; }
-        .sidebar-left p { font-size: 12px; line-height: 1.6; text-align: center; color: #555555; margin-bottom: 15px; }
+        .logo {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 20px;
+            color: #D3968C; /* Rosy brown */
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
 
-        /* Coluna Central (Posts) */
-        .main-post .post-fixed-title { font-family: 'DM Serif Display', serif; color: #D3968C; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; text-align: center; }
-        .post-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: #0A3323; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 8px; }
-        .post-body { font-size: 13px; line-height: 1.7; color: #444444; }
-        .post-body p { margin-bottom: 10px; }
-        .post-footer { margin-top: 15px; padding-top: 10px; border-top: 1px solid #eee; font-size: 11px; color: #888888; display: flex; justify-content: space-between; }
+        .navbar {
+            display: flex;
+            gap: 25px;
+        }
 
-        /* Coluna Direita */
-        .sidebar-right h3 { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; text-align: center; margin-bottom: 20px; color: #0A3323; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .nav-list { list-style: none; }
-        .nav-list li { border-bottom: 1px solid #f0f0f0; padding: 10px 0; display: flex; align-items: center; }
-        .nav-list li:last-child { border-bottom: none; }
-        .nav-list .num { font-family: 'Cinzel', serif; font-size: 11px; font-weight: bold; color: #839958; margin-right: 15px; width: 20px; }
-        .nav-list a { font-family: 'Cinzel', serif; font-size: 12px; text-decoration: none; color: #666666; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
-        .nav-list a:hover { color: #D3968C; }
+        .navbar a {
+            color: #F7F4D5;
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+            font-weight: bold;
+        }
 
-        /* Bloco de Projetos */
-        .project-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0; }
-        .project-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-        .project-name { font-family: 'DM Serif Display', serif; font-size: 15px; color: #0A3323; text-transform: uppercase; }
-        .project-meta { font-size: 11px; color: #777777; margin: 3px 0 8px 0; }
-        .project-btn { display: inline-block; background-color: #839958; color: #FFFFFF; font-size: 11px; padding: 4px 10px; text-decoration: none; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; }
-        .project-btn:hover { background-color: #105666; }
+        .navbar a:hover, .navbar a.active {
+            color: #839958; /* Moss green */
+        }
 
-        @media (max-width: 900px) { .layout-grid { grid-template-columns: 1fr; } }
+        /* --- HERO BANNER (FILMLANE DESTACADO) --- */
+        .hero {
+            margin-top: 75px;
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            background: linear-gradient(to right, rgba(10,51,35,0.9) 30%, rgba(10,51,35,0.2)), url('https://placeholder.com') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #839958;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .hero-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 48px;
+            color: #F7F4D5;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            color: #D3968C;
+        }
+
+        .btn-prime {
+            display: inline-block;
+            background-color: #839958;
+            color: #0A3323;
+            padding: 12px 28px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid #839958;
+            transition: 0.3s;
+        }
+
+        .btn-prime:hover {
+            background-color: transparent;
+            color: #F7F4D5;
+        }
+
+        /* --- SEÇÃO DE FILMES (GRID DE PÔSTERES) --- */
+        .main-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            color: #D3968C;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .movie-card {
+            background-color: #105666; /* Midnight green */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(131, 153, 88, 0.1);
+        }
+
+        .movie-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(131, 153, 88, 0.3);
+        }
+
+        .poster-wrapper {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            background-color: #0A3323;
+            overflow: hidden;
+        }
+
+        .poster-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .movie-card:hover .poster-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .movie-details {
+            padding: 15px;
+        }
+
+        .movie-card-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 18px;
+            color: #F7F4D5;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .movie-card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #D3968C;
+            letter-spacing: 1px;
+        }
+
+        .year-tag {
+            background-color: rgba(131, 153, 88, 0.2);
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #F7F4D5;
+        }
+
+        @media (max-width: 768px) {
+            .navbar { display: none; } /* Adicione um menu hambúrguer futuramente se quiser */
+            .hero-title { font-size: 32px; }
+        }
     </style>
 </head>
 <body>
-    <div class="site-container">
-        <!-- Menu Superior -->
-        <nav class="top-nav">
-            <a href="index.html" class="active">Início</a>
-            <span class="nav-divider">•</span>
-            <a href="about.html">Sobre</a>
-            <span class="nav-divider">•</span>
-            <a href="filmography.html">Vídeos</a>
-            <span class="nav-divider">•</span>
-            <a href="gallery.html">Galeria</a>
-            <span class="nav-divider">•</span>
-            <a href="archive.html">Arquivo</a>
-        </nav>
 
-        <!-- Banner Header -->
-        <div class="banner-container">
-            <img src="https://ibb.co" alt="Memórias Guillen Banner">
+    <!-- Header Fixo Superior -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">Memórias Guillen</a>
+            <nav class="navbar">
+                <a href="index.html" class="active">Início</a>
+                <a href="about.html">Sobre</a>
+                <a href="filmography.html">Vídeos</a>
+                <a href="gallery.html">Galeria</a>
+                <a href="archive.html">Arquivo</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner de Destaque Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-subtitle">Destaque Recente</p>
+            <h1 class="hero-title">Mania de Você</h1>
+            <div class="hero-meta">
+                <span class="year-tag">2026</span>
+                <span>•</span>
+                <span>Série / Novela</span>
+                <span>•</span>
+                <span>Lorena Ferette</span>
+            </div>
+            <a href="filmography.html" class="btn-prime">Ver Detalhes</a>
+        </div>
+    </section>
+
+    <!-- Lista de Produções Estilo Filmlane -->
+    <section class="main-section">
+        <div class="section-header">
+            <h2>Filmografia Otimizada</h2>
         </div>
 
-        <div class="layout-grid">
-            <!-- COLUNA ESQUERDA: SOBRE -->
-            <aside class="sidebar-left">
-                <div class="content-box">
-                    <img src="https://ibb.co" class="profile-img" alt="Alanis Perfil">
-                    <h3>sobre</h3>
-                    <p>Sua fonte de registros e memórias sobre o universo da talentosa atriz Alanis Guillen. ✨🎬</p>
+        <div class="movie-grid">
+            
+            <!-- Card 1 -->
+            <div class="movie-card">
+                <div class="poster-wrapper">
+                    <img src="https://placeholder.com" alt="Pantanal">
                 </div>
-            </aside>
+                <div class="movie-details">
+                    <h3 class="movie-card-title">Pantanal</h3>
+                    <div class="movie-card-meta">
+                        <span class="year-tag">2022</span>
+                        <span>Juma Marruá</span>
+                    </div>
+                </div>
+            </div>
 
-            <!-- COLUNA CENTRAL: POSTS REAIS DO TUMBLR -->
-            <main class="main-post">
-                <div class="post-fixed-title">✦ Pinned Post</div>
-                
-                <div class="content-box">
-                    <div class="post-title">Sejam bem-vindos!</div>
-                    <div class="post-body">
-                        <p>Este espaço nasce do afeto, da admiração e do desejo de celebrar a trajetória artística da Alanis Guillen.</p>
-                        <p>Nosso objetivo é construir um verdadeiro acervo digital vivo: resgatando a nostalgia de diversos momentos de sua carreira, relembrando projetos, e acompanhando de perto todas as novidades sobre a Alanis. 🤍</p>
-                    </div>
-                    <div class="post-footer">
-                        <span>19 de Maio, 2026</span>
-                        <span>#memóriasguillen</span>
+            <!-- Card 2 -->
+            <div class="movie-card">
+                <div class="poster-wrapper">
+                    <img src="https://placeholder.com" alt="Vermelho Sangue">
+                </div>
+                <div class="movie-details">
+                    <h3 class="movie-card-title">Vermelho Sangue</h3>
+                    <div class="movie-card-meta">
+                        <span class="year-tag">2025</span>
+                        <span>Flora Leite</span>
                     </div>
                 </div>
-            </main>
+            </div>
 
-            <!-- COLUNA DIREITA: NAVEGAÇÃO E PROJETOS -->
-            <aside class="sidebar-right">
-                <div class="content-box">
-                    <h3>navegação</h3>
-                    <ul class="nav-list">
-                        <li><span class="num">01</span><a href="gallery.html">Fotos</a></li>
-                        <li><span class="num">02</span><a href="filmography.html">Vídeos</a></li>
-                        <li><span class="num">03</span><a href="#">Propagandas</a></li>
-                        <li><span class="num">04</span><a href="#">Revistas</a></li>
-                        <li><span class="num">05</span><a href="#">Entrevistas</a></li>
-                        <li><span class="num">06</span><a href="#">Novelas</a></li>
-                        <li><span class="num">07</span><a href="#">Séries</a></li>
-                        <li><span class="num">08</span><a href="#">Filmes</a></li>
-                    </ul>
+            <!-- Card 3 -->
+            <div class="movie-card">
+                <div class="poster-wrapper">
+                    <img src="https://placeholder.com" alt="Três Graças">
                 </div>
+                <div class="movie-details">
+                    <h3 class="movie-card-title">Três Graças</h3>
+                    <div class="movie-card-meta">
+                        <span class="year-tag">2025</span>
+                        <span>Lorena Ferette</span>
+                    </div>
+                </div>
+            </div>
 
-                <div class="content-box">
-                    <h3>projetos</h3>
-                    <div class="project-item">
-                        <div class="project-name">Loquinha</div>
-                        <div class="project-meta">Data: 06/04/2026<br>Personagem: Lorena Ferette</div>
-                        <a href="filmography.html" class="project-btn">Assista</a>
-                    </div>
-                    <div class="project-item">
-                        <div class="project-name">Três Graças</div>
-                        <div class="project-meta">Data: 20/10/2025<br>Personagem: Lorena Ferette</div>
-                        <a href="filmography.html" class="project-btn">Assista</a>
-                    </div>
-                    <div class="project-item">
-                        <div class="project-name">Vermelho Sangue</div>
-                        <div class="project-meta">Data: 02/10/2025<br>Personagem: Flora Leite</div>
-                        <a href="filmography.html" class="project-btn">Assista</a>
-                    </div>
-                </div>
-            </aside>
         </div>
-    </div>
+    </section>
+
 </body>
 </html>
